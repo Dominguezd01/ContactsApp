@@ -1,0 +1,16 @@
+:root{
+    color-scheme: dark;
+}
+#alumnosContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 15em);
+    row-gap: 1  em;
+    column-gap: 1em;
+}
+#divAlumno{
+    display: grid;
+    margin-bottom: 1em;
+    background-color: white;
+    color: black;
+    place-items: center;
+}
