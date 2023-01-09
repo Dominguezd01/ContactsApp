@@ -1,11 +1,40 @@
 onload = ()=>{
     fetchApi()
-    setInterval(fetchApi, 100)
+    setInterval(fetchApi, 500)
+
+    document.querySelector("#form").addEventListener("submit", e =>{
+        e.preventDefault()
+        
+        const data = Object.fromEntries(new FormData(e.target))
+        const contacto ={
+            nombre: data.nombre,
+            edad: data.edad,
+            idAl: data.idAl,
+            idCurso: data.idCurso,
+        }
+        
+        
+        fetchEnviar(contacto)
+        console.log(contacto)
+        
+        function fetchEnviar (data) {
+            fetch(`http://127.0.0.1:3001`,{
+                headers: new Headers({
+                    'Access-Control-Allow-Origin': "http://127.0.0.1:443",
+                    "Content-Type": 'application/json'}),
+                
+                method: "POST",
+                body: {data}
+            }) 
+        }
+    })
 }
 
 
 const fetchApi = () =>{
-    fetch("http://127.0.0.1:3001")
+    fetch("http://127.0.0.1:3001",{
+        method: "get"
+    })
         .then(response => response.json())
         .then(response => crearAlumnos(response))
     
@@ -18,7 +47,7 @@ const crearAlumnos = (response) =>{
 
 
 
-    for(let i = 0; i<=response.length;i++){
+    for(let i = 0; i<response.length;i++){
         let divAlumno = document.createElement("div")
         divAlumno.setAttribute("id", "divAlumno")
 
@@ -40,5 +69,7 @@ const crearAlumnos = (response) =>{
         document.getElementById("alumnosContainer").appendChild(divAlumno)
     }
     
+   
+
 
 } 
