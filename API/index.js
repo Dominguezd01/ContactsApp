@@ -1,4 +1,3 @@
-const { json } = require('express');
 const express = require('express')
 const app = express()
 const mysql = require('mysql')
@@ -16,14 +15,10 @@ let conexion = mysql.createConnection({
 conexion.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
-  });
-
-
-
-
+});
 
 app.get('/', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:443')
+    res.setHeader('Access-Control-Allow-Origin', '*')
     conexion.query("select * from alumno;", (error, results, fields) =>{
         if(error){
             return console.log("algo salio mal: "+ error)

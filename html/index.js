@@ -1,16 +1,10 @@
 onload = ()=>{
     fetchApi()
+    setInterval(fetchApi, 100)
 }
 
 
 const fetchApi = () =>{
-    const options = {
-        headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:443'
-        }
-        
-    }
-    
     fetch("http://127.0.0.1:3001")
         .then(response => response.json())
         .then(response => crearAlumnos(response))
@@ -19,11 +13,8 @@ const fetchApi = () =>{
 
 
 const crearAlumnos = (response) =>{
-    let previousResponse = response
-
-    if(previousResponse != response){
-        console.log("Distinto")
-    }
+    let alumnosContainer = document.getElementById("alumnosContainer")
+    alumnosContainer.innerHTML = ""
 
 
 
