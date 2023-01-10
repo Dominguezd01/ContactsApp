@@ -1,6 +1,6 @@
 onload = () => {
     fetchApi()
-    //setInterval(fetchApi, 500)
+    setInterval(fetchApi, 1000)
 
     document.querySelector("#form").addEventListener("submit", e => {
         e.preventDefault()
@@ -14,6 +14,9 @@ onload = () => {
             method: "POST",
             body:JSON.stringify( {
                 nombre: `${data["nombre"]}`,
+                edad: `${data["edad"]}`,
+                id_al: `${data["idAl"]}`,
+                id_curso: `${data["idCurso"]}` 
             })
         })
     })

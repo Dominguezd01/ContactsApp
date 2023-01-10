@@ -20,25 +20,48 @@ conexion.connect(function(err) {
 
 
 app.post('/', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header("Content-Type", "application/json")
-    mostrarBody(req.body)
+    res.set('Access-Control-Allow-Origin', '*')
+    res.set("Content-Type", "application/json")
+    añadirUsuario(req.body)
 })
 
 app.get('/', (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:443')
+    res.set('Access-Control-Allow-Origin', '*')
     conexion.query("select * from alumno;", (error, results, fields) =>{
         if(error){
             return console.log("algo salio mal: "+ error)
         }
-          res.send(results)
-          
-        
+          res.send(results)  
      })
 })
-function mostrarBody(body){
+
+function añadirUsuario(body){
     if(body != undefined){
-        console.log(body)
+        let nombre = body.nombre
+        let edad = body.edad
+        let id_al = body.id_al
+        let id_curso = body.id_curso
+        //let sqlQ = `INSERT INTO alumno (id_al, nombre, edad, id_curso)`+` VALUES(${id_al}, ${nombre}, ${edad}, ${id_curso})`;
+        //let nTostring = nombre.toString()
+        //console.log(nTostring)
+        let sqlQuery = `INSERT INTO alumno(id_al, nombre, id_curso, edad ) VALUES(${id_al},"${nombre}", ${id_curso}, ${edad})`
+
+        try{
+            conexion.query(sqlQuery),(error, results, fields) =>{
+                if(error){
+                    console.log("algo salio mal: "+ error)
+                }
+                //res.send(results)
+                  
+                
+             }
+        }catch(error){
+            
+        }
+       
+         
+         
     } 
 }
+
 app.listen(3001)
