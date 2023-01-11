@@ -56,7 +56,7 @@ function añadirUsuario(body){
                 
              }
         }catch(error){
-            
+            console.error("Error "+ error)
         }
        
          
