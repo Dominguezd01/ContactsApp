@@ -1,18 +1,21 @@
 :root{
     color-scheme: dark;
 }
+
 #formContainer{
     display: grid;
     place-items: center;
     margin-bottom: 1em;
 }
+
 #alumnosContainer{
     display: grid;
     grid-template-columns: repeat(3, 15em);
-    row-gap: 1  em;
+    row-gap: 1em;
     column-gap: 1em;
     place-content: center;
 }
+
 #divAlumno{
     display: grid;
     margin-bottom: 1em;
