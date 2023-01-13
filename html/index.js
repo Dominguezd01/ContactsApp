@@ -19,6 +19,7 @@ onload = () => {
                 id_curso: `${data["idCurso"]}` 
             })
         })
+        setTimeout(fetchApi, 100)
     })
 }
 
@@ -59,10 +60,6 @@ function crearAlumnos (response){
         divAlumno.appendChild(spanBotones)
         document.getElementById("alumnosContainer").appendChild(divAlumno)
     }
-
-
-
-
 } 
 
 function createBotonEliminar(){
@@ -76,6 +73,7 @@ function createBotonEliminar(){
         let container = e.target.closest("div")
         let usuario = Number(container.querySelector("span#idAl").innerText.split(":")[1])
         fetchDelete(usuario)
+        setTimeout(fetchApi, 100)
     })
     return botonBorrar
 }
@@ -89,7 +87,6 @@ function createBotonEdit(){
     crearEdit.setAttribute("id", "botonEditar")
     crearEdit.addEventListener("click", e=>{
         let container = e.target.closest("div")
-        console.log(container)
         cambiarCampo(container)
     })
     return crearEdit
@@ -114,7 +111,7 @@ function cambiarCampo(div){
         const data = Object.fromEntries(new FormData(e.target))
         console.log(data)
         fetchUpdateUser(data)
-        
+        setTimeout(fetchApi, 100)
     })
 
     let inputIdAl = document.createElement("input")
@@ -137,7 +134,6 @@ function cambiarCampo(div){
     inputIdAl.setAttribute("name", "idAl")
     inputIdAl.setAttribute("readOnly", "true")
     
-
     inputNombre.setAttribute("value", previousData.nombre)
     inputNombre.setAttribute("type","text")
     inputNombre.setAttribute("name", "nombre")
@@ -149,7 +145,6 @@ function cambiarCampo(div){
     inputIdCurso.setAttribute("value", previousData.idCurso)
     inputIdCurso.setAttribute("type","text")
     inputIdCurso.setAttribute("name", "idCurso")
-
 
     labelIdAl.innerText = "Id Alumno: " 
     labelNombre.innerText ="Nombre: "
@@ -168,9 +163,6 @@ function cambiarCampo(div){
     spanLabelInputIdCurso.appendChild(labelIdCuso)
     spanLabelInputIdCurso.appendChild(inputIdCurso)
     
-   
-
-    console.log(spanLabelInputIdAl)
     let inputSubmit = document.createElement("input")
     inputSubmit.setAttribute("type", "submit")
     inputSubmit.setAttribute("id", "submitEditable")
@@ -180,13 +172,6 @@ function cambiarCampo(div){
     formNuevo.appendChild(spanLabelInputIdCurso)
     formNuevo.appendChild(inputSubmit)
 
-
-
-    /*
-    formNuevo.appendChild(inputNombre)   
-    formNuevo.appendChild(inputEdad)   
-    formNuevo.appendChild(inputIdCurso)  
-    */ 
     div.appendChild(formNuevo)
 }
 
