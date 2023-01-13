@@ -6,7 +6,7 @@ onload = () => {
         e.preventDefault()
         const data = Object.fromEntries(new FormData(e.target))
         console.log(data["nombre"])
-        fetch("http://127.0.0.1:3001", {
+        fetch("http://127.0.0.1:3001/", {
             headers: {
                 "Access-Control-Allow-Origin" : "*",
                 "Content-Type": "application/json",
@@ -22,12 +22,7 @@ onload = () => {
     })
 }
 
-document.getElementById("formDelete").addEventListener("submit", e=>{
-    e.preventDefault()
-    const data = Object.fromEntries(new FormData(e.target))
-    console.log(data)
-    
-})
+
 
 function crearAlumnos (response){
     let alumnosContainer = document.getElementById("alumnosContainer")
