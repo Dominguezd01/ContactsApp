@@ -1,7 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 :root{
     color-scheme: dark;
 }
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+#formEditable{
+    display: grid;
+    place-items: center;
+    padding: 1em;
+    text-align: center;
+}
 
+#submitEditable{
+    margin-top: 1em;
+}
 #formContainer{
     display: grid;
     place-items: center;
@@ -23,4 +36,24 @@
     color: black;
     place-items: center;
     border-radius: 15px;
+}
+#botonBorrar{
+    margin-left:1em;
+}
+#spanBotones{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1em ;
+
+}
+#spanBotones> button{
+
+margin-right:1em ;
+
+}
+
+#editButton #deleteButton {
+    width: 25px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
 }

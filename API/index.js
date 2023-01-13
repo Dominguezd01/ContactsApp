@@ -37,8 +37,14 @@ app.get('/', (req, res) => {
 
 app.post("/delete",(req, res)=>{
     res.set('Access-Control-Allow-Origin', '*')
-    const body = req.body
-    deleteUser(body)
+    deleteUser(req.body)
+    res.send({status: "Correct"})
+})
+
+app.post("/update", (req, res)=>{
+    res.set('Access-Control-Allow-Origin', '*')
+    updateUser(req.body)
+    res.send({status: "Correct"})
 })
 const añadirUsuario=(body)=>{
     if(body != undefined){
@@ -75,4 +81,16 @@ const deleteUser = (body) =>{
      }
 }
 
+const updateUser = (body) =>{
+    console.log(body)
+    let sentenciaSql = 
+    `UPDATE alumno SET nombre = "${body.nombre}", edad = ${body.edad}, id_curso = ${body.idCurso} WHERE id_al = ${body.id_al};`
+    conexion.query(sentenciaSql, (error, results, field) =>{
+        if(error){
+            console.log("algo salio mal: "+ error)
+        }
+       
+    })
+
+}
 app.listen(3001)
