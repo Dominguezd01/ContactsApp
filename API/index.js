@@ -35,7 +35,12 @@ app.get('/', (req, res) => {
      })
 })
 
-function añadirUsuario(body){
+app.post("/delete",(req, res)=>{
+    res.set('Access-Control-Allow-Origin', '*')
+    const body = req.body
+    deleteUser(body)
+})
+const añadirUsuario=(body)=>{
     if(body != undefined){
         let nombre = body.nombre
         let edad = body.edad
@@ -62,6 +67,16 @@ function añadirUsuario(body){
          
          
     } 
+}
+
+const deleteUser = (body) =>{
+    let idAlumno = body.id_al
+    conexion.query(`DELETE FROM alumno WHERE id_al=${idAlumno}`),(error, results, fields) =>{
+        if(error){
+            console.log("algo salio mal: "+ error)
+        }
+        res.send("Done")
+     }
 }
 
 app.listen(3001)

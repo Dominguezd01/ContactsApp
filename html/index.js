@@ -22,18 +22,23 @@ onload = () => {
     })
 }
 
+document.getElementById("formDelete").addEventListener("submit", e=>{
+    e.preventDefault()
+    const data = Object.fromEntries(new FormData(e.target))
+    console.log(data)
+    fetch("http://127.0.0.1:3001/delete", {
+            headers: {
+                "Access-Control-Allow-Origin" : "*",
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body:JSON.stringify( {
+                id_al: `${data["idAl"]}`,
+            })
+        })
+})
 
-const fetchApi = () => {
-    fetch("http://127.0.0.1:3001", {
-        method: "get"
-    })
-        .then(response => response.json())
-        .then(response => crearAlumnos(response))
-
-}
-
-
-const crearAlumnos = (response) => {
+function crearAlumnos (response){
     let alumnosContainer = document.getElementById("alumnosContainer")
     alumnosContainer.innerHTML = ""
 
@@ -65,3 +70,14 @@ const crearAlumnos = (response) => {
 
 
 } 
+
+function fetchApi (){
+    fetch("http://127.0.0.1:3001", {
+        method: "get"
+    })
+        .then(response => response.json())
+        .then(response => crearAlumnos(response))
+
+}
+
+
