@@ -50,21 +50,12 @@ const añadirUsuario=(body)=>{
         //let nTostring = nombre.toString()
         //console.log(nTostring)
         let sqlQuery = `INSERT INTO alumno(id_al, nombre, id_curso, edad ) VALUES(${id_al},"${nombre}", ${id_curso}, ${edad})`
-
-       
             conexion.query(sqlQuery),(error, results, fields) =>{
                 if(error){
                     console.error("algo salio mal: "+ error)
                 }
                 //res.send(results)
-                  
-                
              }
-
-    
-       
-         
-         
     } 
 }
 
