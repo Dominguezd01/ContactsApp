@@ -49,16 +49,22 @@ const añadirUsuario=(body)=>{
         //let sqlQ = `INSERT INTO alumno (id_al, nombre, edad, id_curso)`+` VALUES(${id_al}, ${nombre}, ${edad}, ${id_curso})`;
         //let nTostring = nombre.toString()
         //console.log(nTostring)
-        let sqlQuery = `INSERT INTO alumno(id_al, nombre, id_curso, edad ) VALUES(${id_al},"${nombre}", ${id_curso}, ${edad})`
-            conexion.query(sqlQuery),(error, results, fields) =>{
-                if(error){
-                    console.error("algo salio mal: "+ error)
-                }
-                //res.send(results)
-             }
+       if(queryInsertar(nombre, edad,id_al,id_curso)){
+            return true
+       }
     } 
 }
-
+const queryInsertar =(nombre, edad,id_al,id_curso)=>{
+    let sqlQuery = `INSERT INTO alumno(id_al, nombre, id_curso, edad ) VALUES(${id_al},"${nombre}", ${id_curso}, ${edad})`
+    conexion.query(sqlQuery),(error, results, fields) =>{
+        if(error){
+            return "error"
+        }else{
+            return true
+        }
+        //res.send(results)
+     }
+}
 const deleteUser = (body) =>{
     let idAlumno = body.id_al
     conexion.query(`DELETE FROM alumno WHERE id_al=${idAlumno}`),(error, results, fields) =>{
